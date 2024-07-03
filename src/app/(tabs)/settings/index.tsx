@@ -4,6 +4,9 @@ import { Text, View } from 'react-native'
 const SettingsScreen = () => {
      return (
           <View>
+               <Text className='text-white'>
+                    Settings screen
+               </Text>
           </View >
      )
 }

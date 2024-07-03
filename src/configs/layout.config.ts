@@ -1,5 +1,5 @@
-import { NativeStackNavigationOptions } from '@react-navigation/native-stack'
-import { colors } from './style.config'
+import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
+import { colors } from './style.config';
 
 export const StackScreenWithSearchBar: NativeStackNavigationOptions = {
      headerStyle: {
@@ -10,5 +10,6 @@ export const StackScreenWithSearchBar: NativeStackNavigationOptions = {
           fontWeight: 'bold',
      },
      headerShadowVisible: false,
-     headerTitleAlign: 'center'
+     headerTitleAlign: 'center',
+     gestureEnabled: true,
 }
