@@ -8,7 +8,7 @@ import {
 } from "@react-navigation/native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { setBackgroundColorAsync } from 'expo-system-ui';
 import { useColorScheme } from 'react-native';
 import { colors } from '@/configs/style.config';
@@ -21,6 +21,8 @@ const App = () => {
      // const handleTrackPlayerLoaded = useCallback(() => {
      //      SplashScreen.hideAsync()
      // }, [])
+
+     // useLogTrackPlayerState()
 
      useEffect(() => {
           setBackgroundColorAsync(
@@ -46,6 +48,16 @@ const RootNavigation = () => {
      return (
           <Stack>
                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+               <Stack.Screen
+                    name="player"
+                    options={{
+                         presentation: 'card',
+                         gestureEnabled: true,
+                         gestureDirection: 'vertical',
+                         animationDuration: 400,
+                         headerShown: false,
+                    }}
+               />
           </Stack>
      )
 }

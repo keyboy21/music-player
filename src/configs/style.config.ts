@@ -15,4 +15,4 @@ export const fontSize = {
      lg: 24,
 }
 
-export const TabbarIconSize = 24;
+export const TabbarIconSize = 23;

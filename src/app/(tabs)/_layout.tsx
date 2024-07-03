@@ -1,15 +1,13 @@
 import { TabbarIconSize, colors, fontSize } from '@/configs/style.config';
 import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { BlurView } from 'expo-blur';
 import { Tabs } from 'expo-router';
-import { StyleSheet } from 'react-native';
 
 const TabsNavigation = () => {
      return (
           <Tabs
                screenOptions={{
-                    tabBarActiveTintColor: colors.primary,
-                    tabBarInactiveTintColor: colors.text,
+                    tabBarActiveTintColor: colors.text,
+                    tabBarInactiveTintColor: colors.textMuted,
                     tabBarLabelStyle: {
                          fontSize: fontSize.xs,
                          fontWeight: 'bold',
@@ -21,33 +19,20 @@ const TabsNavigation = () => {
                          borderTopRightRadius: 20,
                          borderTopWidth: 0,
                          height: 60,
-                         backgroundColor:colors.background
+                         backgroundColor: colors.primary,
                     },
-                    // tabBarBackground: () => (
-                    //      <BlurView
-                    //           intensity={90}
-                    //           style={{
-                    //                ...StyleSheet.absoluteFillObject,
-                    //                overflow: 'hidden',
-                    //                borderTopLeftRadius: 15,
-                    //                borderTopRightRadius: 15,
-                    //           }}
-                    //      />
-                    // )
                }}
           >
-               <Tabs.Screen name='favourites'
+               <Tabs.Screen name='settings'
                     options={{
-                         title: 'Favourites',
-                         tabBarIcon: ({ color }) => {
-                              return (
-                                   <FontAwesome
-                                        name="heart"
-                                        size={TabbarIconSize}
-                                        color={color}
-                                   />
-                              )
-                         },
+                         title: 'Settings',
+                         tabBarIcon: ({ color }) =>
+                              <Ionicons
+                                   name="settings"
+                                   size={TabbarIconSize}
+                                   color={color}
+                              />
+                         ,
                     }}
                />
                <Tabs.Screen name='playlits'
@@ -62,24 +47,26 @@ const TabsNavigation = () => {
                          ,
                     }}
                />
+               <Tabs.Screen name='favourites'
+                    options={{
+                         title: 'Favourites',
+                         tabBarIcon: ({ color }) => {
+                              return (
+                                   <FontAwesome
+                                        name="heart"
+                                        size={TabbarIconSize}
+                                        color={color}
+                                   />
+                              )
+                         },
+                    }}
+               />
                <Tabs.Screen name='(songs)'
                     options={{
                          title: 'Songs',
                          tabBarIcon: ({ color }) =>
                               <Ionicons
                                    name="musical-notes-sharp"
-                                   size={TabbarIconSize}
-                                   color={color}
-                              />
-                         ,
-                    }}
-               />
-               <Tabs.Screen name='settings'
-                    options={{
-                         title: 'Settings',
-                         tabBarIcon: ({ color }) =>
-                              <Ionicons
-                                   name="settings"
                                    size={TabbarIconSize}
                                    color={color}
                               />

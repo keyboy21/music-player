@@ -3,11 +3,11 @@ import { colors } from './style.config'
 
 export const StackScreenWithSearchBar: NativeStackNavigationOptions = {
      headerStyle: {
-          backgroundColor: colors.background,
+          backgroundColor: colors.primary
      },
      headerTintColor: colors.text,
      headerTitleStyle: {
-          fontWeight: 'bold'
+          fontWeight: 'bold',
      },
      headerShadowVisible: false,
      headerTitleAlign: 'center'
