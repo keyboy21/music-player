@@ -1,3 +1,4 @@
+import { Paragraph } from '@/components/Paragraph';
 import { Link } from 'expo-router';
 import { View, Text } from 'react-native';
 
@@ -5,9 +6,9 @@ export default function NotFoundScreen() {
   return (
     <>
       <View>
-        <Text>This screen doesn't exist.</Text>
+        <Paragraph>This screen doesn't exist.</Paragraph>
         <Link href="/">
-          <Text>Go to home screen!</Text>
+          <Paragraph>Go to home screen!</Paragraph>
         </Link>
       </View>
     </>

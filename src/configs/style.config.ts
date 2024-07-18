@@ -9,10 +9,15 @@ export const colors = {
 }
 
 export const fontSize = {
-     xs: 13,
-     sm: 16,
-     base: 20,
-     lg: 24,
+     xs: 12,
+     sm: 14,
+     base: 16,
+     lg: 18,
+     xl: 20,
+     '2xl': 24,
+     '3xl': 30,
+     '4xl': 36,
+     '5xl': 48,
 }
 
 export const TabbarIconSize = 23;

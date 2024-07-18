@@ -1,11 +1,12 @@
+import { Paragraph } from '@/components/Paragraph';
 import { View, Text } from 'react-native'
 
 const PlayerScreen = () => {
      return (
           <View>
-               <Text>
+               <Paragraph>
                     asdasdasd
-               </Text>
+               </Paragraph>
           </View>
      )
 }

@@ -1,11 +1,6 @@
 import '@/styles/global.css';
 import { SplashScreen, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import {
-     DarkTheme,
-     DefaultTheme,
-     ThemeProvider,
-} from "@react-navigation/native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useCallback, useEffect } from 'react';
@@ -24,21 +19,12 @@ const App = () => {
 
      // useLogTrackPlayerState()
 
-     useEffect(() => {
-          setBackgroundColorAsync(
-               colorScheme === "dark" ? colors.primary : colors.primary,
-          );
-     }, [colorScheme]);
 
      return (
           <SafeAreaProvider>
-               <GestureHandlerRootView style={{ flex: 1 }}>
-                    <ThemeProvider
-                         value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-                    >
-                         <RootNavigation />
-                         <StatusBar />
-                    </ThemeProvider>
+               <GestureHandlerRootView className='flex-1'>
+                    <RootNavigation />
+                    <StatusBar />
                </GestureHandlerRootView>
           </SafeAreaProvider>
      )

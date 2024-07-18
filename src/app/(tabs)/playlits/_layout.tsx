@@ -1,14 +1,17 @@
-import { StackScreenWithSearchBar } from "@/configs/layout.config"
+import { StackScreenOptions } from "@/configs/stack-screen.options"
+import { colors } from "@/configs/style.config"
 import { Stack } from "expo-router"
 import { View } from "react-native"
 
 const PlayListScreenLayout = () => {
      return (
-          <Stack>
+          <Stack screenOptions={{
+               contentStyle: { backgroundColor: colors.background },
+          }}>
                <Stack.Screen name="index"
                     options={{
                          headerTitle: 'Playlist',
-                         ...StackScreenWithSearchBar,
+                         ...StackScreenOptions,
                     }}
                />
           </Stack>

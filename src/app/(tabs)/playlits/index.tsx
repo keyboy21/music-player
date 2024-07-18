@@ -1,12 +1,13 @@
+import { Paragraph } from '@/components/Paragraph'
 import React from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 
 const FavoritsScreen = () => {
      return (
           <View>
-               <Text className='text-white'>
+               <Paragraph className='text-white'>
                     Playlists screen
-               </Text>
+               </Paragraph>
           </View >
      )
 }

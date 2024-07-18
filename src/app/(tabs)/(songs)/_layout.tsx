@@ -1,15 +1,17 @@
-import { StackScreenWithSearchBar } from "@/configs/layout.config"
+import { StackScreenOptions } from "@/configs/stack-screen.options";
 import { colors } from "@/configs/style.config"
 import { Stack, useRouter } from "expo-router"
 
 const SongScreenLayout = () => {
      const router = useRouter();
      return (
-          <Stack>
+          <Stack screenOptions={{
+               contentStyle: { backgroundColor: colors.background },
+          }}>
                <Stack.Screen name="index"
                     options={{
                          headerTitle: 'Songs',
-                         ...StackScreenWithSearchBar,
+                         ...StackScreenOptions,
                          headerSearchBarOptions: {
                               headerIconColor: colors.text,
                               tintColor: colors.primary,
@@ -18,7 +20,7 @@ const SongScreenLayout = () => {
                                    router.setParams({
                                         q: event.nativeEvent.text,
                                    });
-                              }
+                              },
                          }
                     }}
                />

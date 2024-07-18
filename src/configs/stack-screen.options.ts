@@ -1,7 +1,7 @@
 import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { colors } from './style.config';
 
-export const StackScreenWithSearchBar: NativeStackNavigationOptions = {
+export const StackScreenOptions: NativeStackNavigationOptions = {
      headerStyle: {
           backgroundColor: colors.primary
      },
