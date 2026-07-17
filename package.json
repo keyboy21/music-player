@@ -7,13 +7,14 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "test": "jest --passWithNoTests"
-  },
-  "jest": {
-    "preset": "jest-expo"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "e2e": "maestro test e2e"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.1.1",
+    "@react-native-async-storage/async-storage": "2.2.0",
     "@react-navigation/material-top-tabs": "^7.6.10",
     "@react-navigation/native": "^7.3.11",
     "@shopify/flash-list": "^2.3.2",
@@ -24,6 +25,7 @@
     "expo-font": "~57.0.1",
     "expo-image": "~57.0.1",
     "expo-linking": "~57.0.3",
+    "expo-media-library": "~57.0.3",
     "expo-router": "~57.0.7",
     "expo-splash-screen": "~57.0.4",
     "expo-status-bar": "~57.0.1",
@@ -43,10 +45,10 @@
   },
   "devDependencies": {
     "@types/react": "~19.2.17",
-    "jest": "^30.4.2",
-    "jest-expo": "~57.0.2",
+    "@vitest/coverage-v8": "^4.1.10",
     "react-test-renderer": "19.2.7",
-    "typescript": "~7.0.2"
+    "typescript": "~7.0.2",
+    "vitest": "^4.1.10"
   },
   "private": true,
   "packageManager": "pnpm@11.13.1+sha512.b2fc7683b8a6525414e7d13e1ba28caaddde96bf66ec540bfaeb7e702b81f3e0be4d1f295edf7f9fe0396740a8dce4509c582ddf79891f4543fea32d37645f25"

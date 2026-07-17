@@ -1,0 +1,12 @@
+appId: com.anonymous.musicplayer
+---
+- launchApp
+- tapOn: "Settings"
+- assertVisible: "Local music library"
+- tapOn: "Scan phone music"
+- tapOn: "Songs"
+- assertVisible: "title"
+- tapOn: "Playlists"
+- assertVisible: "Create playlist"
+- tapOn: "Favourites"
+- assertVisible: "No favourites yet"
