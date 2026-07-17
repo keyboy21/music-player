@@ -1,10 +1,8 @@
-import { Paragraph } from '@/components/Paragraph'
-import TrackListItem from '@/components/TrackListItem'
-import { useNavigationSearch } from '@/hooks/useNavigationSearch'
-import { FlashList } from '@shopify/flash-list'
-import { useLocalSearchParams } from 'expo-router'
-import React from 'react'
-import { Keyboard, ScrollView, View, Text } from 'react-native'
+import { Paragraph } from '@/components/Paragraph';
+import TrackListItem from '@/components/TrackListItem';
+import { FlashList } from '@shopify/flash-list';
+import { useLocalSearchParams } from 'expo-router';
+import { Keyboard, ScrollView, View } from 'react-native';
 
 const DATA = [
   {
@@ -95,21 +93,17 @@ const SongScreen = () => {
         contentInsetAdjustmentBehavior="automatic"
         onScrollBeginDrag={dismissKeyboard}
         keyboardShouldPersistTaps="handled"
-        contentContainerStyle={{
-          paddingTop: 16
-        }}
-        estimatedItemSize={100}
+        contentContainerClassName="pt-4"
         data={filteredSpeakers}
-        renderItem={({ item }) => <TrackListItem />}
-        ItemSeparatorComponent={() => (
-          <View className="opacity-20 border-textMuted border my-2 ml-20" />
-        )}
+        renderItem={() => <TrackListItem />}
+        ItemSeparatorComponent={() => <View className="my-2 ml-20 border-[0.5px] border-gray-400 opacity-20" />}
         ListEmptyComponent={() => (
           <View>
             <Paragraph
               size='lg'
               fontStyle='italic'
-              className='text-red-600 mx-auto'
+              color="error"
+              className="self-center"
             >
               No results found{" "}
             </Paragraph>
@@ -118,5 +112,6 @@ const SongScreen = () => {
     </ScrollView>
   )
 }
+
 
 export default SongScreen;

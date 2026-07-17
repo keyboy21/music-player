@@ -5,7 +5,7 @@ import { View } from 'react-native'
 const FavouritesScreen = () => {
      return (
           <View>
-               <Paragraph className='text-white'>
+               <Paragraph>
                     Favourites screen
                </Paragraph>
           </View >
