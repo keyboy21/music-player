@@ -5,7 +5,7 @@ import { View } from 'react-native'
 const SettingsScreen = () => {
      return (
           <View>
-               <Paragraph className='text-white'>
+               <Paragraph>
                     Settings screen
                </Paragraph>
           </View >
