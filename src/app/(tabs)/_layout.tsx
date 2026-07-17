@@ -35,7 +35,7 @@ const TabsNavigation = () => {
                          ,
                     }}
                />
-               <Tabs.Screen name='playlits'
+               <Tabs.Screen name='playlists'
                     options={{
                          title: 'Playlists',
                          tabBarIcon: ({ color }) =>
