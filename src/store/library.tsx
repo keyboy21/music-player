@@ -9,7 +9,8 @@ import {
 	useMemo,
 	useState,
 } from 'react';
-import TrackPlayer, { type Track } from 'react-native-track-player';
+import TrackPlayer, { RepeatMode, type Track } from 'react-native-track-player';
+import { assetToTrack, createDefaultPlaylists, type LibraryTrack, type Playlist } from './library-model';
 
 const STORAGE_KEYS = {
 	favorites: 'music-player:favorites',
@@ -18,32 +19,18 @@ const STORAGE_KEYS = {
 	lastTrackId: 'music-player:lastTrackId',
 };
 
-export type LibraryTrack = Track & {
-	id: string;
-	artist: string;
-	album?: string;
-	duration?: number;
-	filename?: string;
-	dateAdded?: number;
-};
-
-export type Playlist = {
-	id: string;
-	name: string;
-	description: string;
-	trackIds: string[];
-	createdAt: number;
-	updatedAt: number;
-};
-
 export type PlayerSettings = {
 	autoScanOnLaunch: boolean;
 	showFilenames: boolean;
+	shuffleEnabled: boolean;
+	repeatMode: 'off' | 'track' | 'queue';
 };
 
 const defaultSettings: PlayerSettings = {
 	autoScanOnLaunch: true,
 	showFilenames: true,
+	shuffleEnabled: false,
+	repeatMode: 'queue',
 };
 
 const fallbackTracks: LibraryTrack[] = [
@@ -65,34 +52,9 @@ const fallbackTracks: LibraryTrack[] = [
 	},
 ];
 
-const createDefaultPlaylists = (tracks: LibraryTrack[]): Playlist[] => [
-	{
-		id: 'all-local-music',
-		name: 'All Music',
-		description: 'Every track currently indexed on this phone.',
-		trackIds: tracks.map((track) => track.id),
-		createdAt: Date.now(),
-		updatedAt: Date.now(),
-	},
-];
-
 const readJson = async <T,>(key: string, fallback: T): Promise<T> => {
 	const value = await AsyncStorage.getItem(key);
 	return value ? JSON.parse(value) as T : fallback;
-};
-
-const assetToTrack = (asset: MediaLibrary.Asset): LibraryTrack => {
-	const title = asset.filename.replace(/\.[^/.]+$/, '') || 'Unknown title';
-	return {
-		id: asset.id,
-		url: asset.uri,
-		title,
-		artist: 'Unknown artist',
-		album: 'Local music',
-		duration: asset.duration,
-		filename: asset.filename,
-		dateAdded: asset.creationTime,
-	};
 };
 
 const LibraryContext = createContext<LibraryContextValue | undefined>(undefined);
@@ -243,6 +205,12 @@ export const LibraryProvider = ({ children }: { children: ReactNode }) => {
 		setSettingsState((currentSettings) => {
 			const updatedSettings = { ...currentSettings, ...nextSettings };
 			void AsyncStorage.setItem(STORAGE_KEYS.settings, JSON.stringify(updatedSettings));
+			const repeatMode = updatedSettings.repeatMode === 'track'
+				? RepeatMode.Track
+				: updatedSettings.repeatMode === 'queue'
+					? RepeatMode.Queue
+					: RepeatMode.Off;
+			void TrackPlayer.setRepeatMode(repeatMode);
 			return updatedSettings;
 		});
 	}, []);

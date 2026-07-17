@@ -21,27 +21,27 @@ This project is moving toward a phone-local music player with the expected featu
 
 ### 2. Playback engine
 
-- Add seek, repeat, shuffle, replay current track, and stop controls to the visible player UI.
+- Add seek, repeat, shuffle, replay current track, and stop controls to the visible player UI. ✅ seek, repeat mode, and shuffle setting are now visible; stop/replay remain future polish.
 - Harden background playback, lock-screen controls, notification controls, and audio interruptions on real devices.
 - Persist and restore position, repeat mode, shuffle mode, and volume.
 
 ### 3. Library browsing
 
 - Add Songs, Artists, Albums, Folders, Genres, Recently Added, and Recently Played views.
-- Add sorting by title, artist, album, duration, date added, and play count.
+- Add sorting by title, artist, album, duration, date added, and play count. ✅
 - Add fast search across title, artist, album, and filename.
 - Add artwork fallback and metadata editing safeguards for incomplete tags.
 
 ### 4. Playlists and queue
 
-- Create, rename, delete, and reorder playlists.
+- Create, rename, delete, and reorder playlists. ✅ basic create is implemented; rename/delete/reorder remain future polish.
 - Add/remove tracks from playlists and support multi-select actions.
 - Show a Now Playing queue with drag-and-drop reorder and swipe-to-remove.
 - Add "Play next", "Add to queue", "Shuffle all", and "Start radio/mix" actions.
 
 ### 5. Favourites and ratings
 
-- Persist favourites locally instead of keeping them only in memory.
+- Persist favourites locally instead of keeping them only in memory. ✅
 - Support star ratings or thumbs-up metadata per track.
 - Add smart playlists for favourites, highly rated tracks, and most played tracks.
 
@@ -64,7 +64,7 @@ This project is moving toward a phone-local music player with the expected featu
 - Add a repository layer so UI components do not depend directly on storage or Track Player APIs.
 - Add skeleton loading states and polished empty states.
 - Add E2E smoke tests for tab navigation, search, favourite toggling, and player launch.
-- Add unit tests for library filtering, playlist helpers, and favourite toggling.
+- Add unit tests for library filtering, sorting, playlist helpers, and track ID toggling. ✅
 
 ## Refactoring plan
 

@@ -38,6 +38,22 @@ const SettingsScreen = () => {
 				value={settings.showFilenames}
 				onValueChange={(value) => setSettings({ showFilenames: value })}
 			/>
+			<SettingSwitch
+				label="Shuffle playback"
+				description="Next-track controls pick a random item from the current queue."
+				value={settings.shuffleEnabled}
+				onValueChange={(value) => setSettings({ shuffleEnabled: value })}
+			/>
+			<View className="gap-3 rounded-2xl bg-zinc-900 p-4">
+				<Paragraph size="lg" weight="semibold">Repeat mode</Paragraph>
+				<View className="flex-row gap-2">
+					{(['off', 'track', 'queue'] as const).map((repeatMode) => (
+						<Pressable key={repeatMode} className="rounded-full px-3 py-2" style={{ backgroundColor: settings.repeatMode === repeatMode ? colors.primary : '#000' }} onPress={() => setSettings({ repeatMode })}>
+							<Paragraph weight="semibold">{repeatMode}</Paragraph>
+						</Pressable>
+					))}
+				</View>
+			</View>
 		</View>
 	);
 };

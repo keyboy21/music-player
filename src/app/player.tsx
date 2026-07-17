@@ -14,12 +14,30 @@ const formatTime = (seconds: number) => {
 };
 
 const PlayerScreen = () => {
-	const { currentTrack, isFavorite, toggleTrackFavorite } = useLibrary();
+	const { currentTrack, tracks, settings, isFavorite, toggleTrackFavorite, setCurrentTrackId } = useLibrary();
 	const playbackState = usePlaybackState();
 	const progress = useProgress(500);
 	const isPlaying = playbackState.state === State.Playing;
 	const duration = currentTrack?.duration ?? progress.duration;
 	const progressPercentage = duration ? Math.min(progress.position / duration, 1) * 100 : 0;
+
+	const skipWithState = async (direction: 'next' | 'previous') => {
+		if (settings.shuffleEnabled && direction === 'next' && tracks.length > 1) {
+			const candidates = tracks.filter((track) => track.id !== currentTrack?.id);
+			const nextTrack = candidates[Math.floor(Math.random() * candidates.length)];
+			if (nextTrack) setCurrentTrackId(nextTrack.id);
+		}
+
+		if (direction === 'next') {
+			await TrackPlayer.skipToNext();
+			return;
+		}
+		await TrackPlayer.skipToPrevious();
+	};
+
+	const seekBy = async (seconds: number) => {
+		await TrackPlayer.seekTo(Math.max(progress.position + seconds, 0));
+	};
 
 	const togglePlayback = async () => {
 		if (isPlaying) {
@@ -61,8 +79,17 @@ const PlayerScreen = () => {
 				</View>
 			</View>
 
-			<View className="mt-10 flex-row items-center justify-center gap-10">
-				<Pressable accessibilityRole="button" accessibilityLabel="Previous track" onPress={() => void TrackPlayer.skipToPrevious()}>
+			<View className="mt-8 flex-row items-center justify-center gap-4">
+				<Pressable accessibilityRole="button" accessibilityLabel="Seek backward 15 seconds" onPress={() => void seekBy(-15)}>
+					<Ionicons name="play-back" size={30} color={colors.textMuted} />
+				</Pressable>
+				<Pressable accessibilityRole="button" accessibilityLabel="Seek forward 15 seconds" onPress={() => void seekBy(15)}>
+					<Ionicons name="play-forward" size={30} color={colors.textMuted} />
+				</Pressable>
+			</View>
+
+			<View className="mt-6 flex-row items-center justify-center gap-10">
+				<Pressable accessibilityRole="button" accessibilityLabel="Previous track" onPress={() => void skipWithState('previous')}>
 					<Ionicons name="play-skip-back" size={36} color={colors.textMuted} />
 				</Pressable>
 				<Pressable accessibilityRole="button" accessibilityLabel={isPlaying ? 'Pause' : 'Play'} onPress={() => void togglePlayback()}>
@@ -70,9 +97,13 @@ const PlayerScreen = () => {
 						<Ionicons name={isPlaying ? 'pause' : 'play'} size={42} color={colors.text} />
 					</View>
 				</Pressable>
-				<Pressable accessibilityRole="button" accessibilityLabel="Next track" onPress={() => void TrackPlayer.skipToNext()}>
+				<Pressable accessibilityRole="button" accessibilityLabel="Next track" onPress={() => void skipWithState('next')}>
 					<Ionicons name="play-skip-forward" size={36} color={colors.textMuted} />
 				</Pressable>
+			</View>
+			<View className="mt-8 flex-row justify-center gap-4">
+				<Paragraph color="muted">Shuffle: {settings.shuffleEnabled ? 'on' : 'off'}</Paragraph>
+				<Paragraph color="muted">Repeat: {settings.repeatMode}</Paragraph>
 			</View>
 		</View>
 	);
