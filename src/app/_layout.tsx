@@ -4,8 +4,11 @@ import { StatusBar } from 'expo-status-bar';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { LibraryProvider } from '@/store/library';
+import { useSetupTrackPlayer } from '@/hooks/useSetupTrackPlayer';
 
 const App = () => {
+	useSetupTrackPlayer({});
+
 	return (
 		<SafeAreaProvider>
 			<GestureHandlerRootView className="flex-1">

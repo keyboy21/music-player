@@ -5,27 +5,25 @@ This project is moving toward a phone-local music player with the expected featu
 ## Current foundation
 
 - Expo Router tabs for Songs, Favourites, Playlists, and Settings.
-- A shared in-memory library store that exposes tracks, playlists, favourites, the active track, and playlist helpers.
-- Basic Songs, Favourites, Playlists, and Player screens wired to the shared store.
-- React Native Track Player is installed, but full playback and local media scanning still need to be integrated.
+- A persistent library store that exposes tracks, playlists, favourites, settings, the active track, and playlist helpers.
+- Basic Songs, Favourites, Playlists, Settings, and Player screens wired to the shared store.
+- React Native Track Player is initialized with queue, background control, and basic play/pause/skip scaffolding.
+- Local audio permission requests and media-library scanning are wired through Expo Media Library.
 
-## Missing core features
+## Remaining core features
 
 ### 1. Local music discovery
 
-- Request Android audio/media permissions and iOS media-library permissions.
-- Scan phone storage/media library for audio files and metadata.
-- Normalize discovered files into a track model with stable IDs, URI, title, artist, album, duration, artwork, and date added.
-- Provide manual refresh and automatic refresh when the app returns to the foreground.
-- Add empty/error states for denied permissions, no local music, and unreadable files.
+- Improve platform-specific audio metadata extraction beyond filename fallback.
+- Add folder allow/deny lists and incremental rescans.
+- Add artwork extraction for local files.
+- Add richer empty/error states for unreadable files and partially granted permissions.
 
 ### 2. Playback engine
 
-- Initialize React Native Track Player once during app startup.
-- Convert local library tracks into Track Player queue entries.
-- Implement play, pause, seek, skip next/previous, replay current track, and stop.
-- Support background playback, lock-screen controls, notification controls, and audio interruptions.
-- Persist and restore the last active track, position, queue, repeat mode, shuffle mode, and volume.
+- Add seek, repeat, shuffle, replay current track, and stop controls to the visible player UI.
+- Harden background playback, lock-screen controls, notification controls, and audio interruptions on real devices.
+- Persist and restore position, repeat mode, shuffle mode, and volume.
 
 ### 3. Library browsing
 
@@ -79,8 +77,8 @@ This project is moving toward a phone-local music player with the expected featu
 ## Suggested milestone order
 
 1. Stabilize current UI and mock data flows.
-2. Add persistent favourites and settings.
-3. Integrate Track Player queue/playback for bundled or mock URIs.
-4. Add local media permissions and scanning.
-5. Replace mock library data with scanned phone music.
+2. Add persistent favourites and settings. ✅
+3. Integrate Track Player queue/playback for bundled or mock URIs. ✅
+4. Add local media permissions and scanning. ✅
+5. Replace mock library data with scanned phone music. ✅ when permissions return audio files; demo fallback remains for empty libraries.
 6. Add playlists, queue editing, mini-player, and advanced settings.
